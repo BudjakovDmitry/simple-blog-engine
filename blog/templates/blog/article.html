@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="{{ article.lead }}">
+    <title>{{ article.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/pygments.css' %}">
+</head>
+<body>
+    <header class="page-header">
+        <a href="/" title="На главную">На главную</a>
+    </header>
+    <main class="main-article">
+        <h1>{{ article.title }}</h1>
+        {{ article.formatted_text|safe }}
+    </main>
+    <footer class="page-footer">
+        <p>&copy; 2026 dmitbud</p>
+    </footer>
+</body>
+</html>
