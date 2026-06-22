@@ -1,2 +1,2 @@
-# Технический блог
+# Simple blog engine
 
