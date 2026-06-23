@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Linux, блог">
     <meta name="description" content="Технический блог о Linux, сетях и разработке">
-    <title>dmitbud - технический блог</title>
+    <title>dmitbud.tech - технический блог</title>
 </head>
 <body>
     <header class="page-header">
@@ -16,16 +16,16 @@
             -->
             <ul class="navigation-list">
                 <li class="navigation-item navigation-current">
-                    <a href="/" title="Home">На главную</a>
+                    <a href="" title="Home">На главную</a>
                 </li>
                 <li class="navigation-item">
-                    <a href="/tags" title="Tags">Теги</a>
+                    <a href="/linux" title="Tags">Linux</a>
                 </li>
             </ul>
         </nav>
     </header>
     <main class="main-inner">
-        <h1 class="feed-header">Что нового</h1>
+        <h1 class="feed-header">Новое в блоге</h1>
         {% if article_list %}
             {% for article in article_list %}
                 <article class="feed-item">
@@ -37,10 +37,15 @@
                         </h2>
                     </header>
                     <p class="feed-item-lead">{{ article.lead|safe }}</p>
+                    <a href="/articles/{{ article.slug }}/">Читать</a>
                     <footer class="feed-item-footer">
+                        {% if article.published_at %}
                         <time datetime="{{ article.published_at|date:'Y-m-d' }}">
                             {{ article.published_at }}
                         </time>
+                        {% else %}
+                        <span class="publish-waiting">Ожидает публикации</span>
+                        {% endif %}
                     </footer>
                 </article>
             {% endfor %}
