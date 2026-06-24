@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,15 +6,17 @@
     <meta name="keywords" content="Linux, блог">
     <meta name="description" content="Технический блог о Linux, сетях и разработке">
     <title>dmitbud.tech - технический блог</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
 </head>
 <body>
-    <header class="page-header">
+    <header class="site-header">
         <nav class="site-navigation">
             <!-- TODO
             <a href="/" title="Home" class="navigation-logo">
                 <img src="..." alt="..." width="..." height="...">
             </a>
             -->
+            <a href="/" class="brand">dmitbud.tech</a>
             <ul class="navigation-list">
                 <li class="navigation-item navigation-current">
                     <a href="" title="Home">На главную</a>
@@ -59,7 +62,7 @@
         </ul>
         -->
     </main>
-    <footer class="page-footer">
+    <footer class="site-footer">
         <p class="footer-copyright">&copy; 2026 dmitbud</p>
         <section class="footer-contacts">
             Связаться со мной:
