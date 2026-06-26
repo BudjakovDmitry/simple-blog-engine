@@ -10,6 +10,15 @@ class Series(models.Model):
         return self.name
 
 
+class Stream(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    route = models.CharField(max_length=100, unique=True)
+    order = models.SmallIntegerField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Article(models.Model):
     class Status(models.TextChoices):
         DRAFT = "draft"
@@ -26,6 +35,13 @@ class Article(models.Model):
     updated_at = models.DateTimeField(null=True, blank=True)
     views_count = models.IntegerField(default=0)
     series_id = models.ForeignKey(Series, on_delete=models.SET_NULL, null=True, blank=True)
+    stream = models.ForeignKey(
+        Stream,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        db_index=True,
+    )
 
     def publish(self):
         self.status = self.Status.PUBLISHED
