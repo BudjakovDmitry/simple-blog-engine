@@ -90,8 +90,6 @@ a:hover {
 }
 
 .post-feed {
-    display: grid;
-    gap: 20px;
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -101,7 +99,13 @@ a:hover {
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     padding: 30px;
+    margin-bottom: 20px;
 }
+
+.feed-item:last-child {
+    margin-bottom: 0;
+}
+
 
 .feed-item-title {
     margin: 0;
@@ -113,3 +117,15 @@ a:hover {
     background-color: var(--surface-bg);
 }
 
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted-color);
+    font-size: 0.95rem;
+    height: 80px;
+}
+
+.footer-inner p {
+    margin: 0;
+}

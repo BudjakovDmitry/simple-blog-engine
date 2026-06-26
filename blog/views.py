@@ -24,13 +24,13 @@ def render_feed(request, article_list):
 
 
 def feed(request):
-    get_published_only = not is_user_superadmin(request)
+    get_published_only = not is_user_superuser(request)
     article_list = get_last_articles(get_published_only)
     return render_feed(request, article_list)
 
 
 def linux(request):
-    get_published_only = not is_user_superadmin(request)
+    get_published_only = not is_user_superuser(request)
     article_list = get_last_articles_linux(get_published_only)
     return render_feed(request, article_list)
 
