@@ -70,18 +70,56 @@ mkdir -p /opt/python/3.14.3
 ./configure --enable-optimizations --prefix=/opt/python/3.14.3
 make -j$(nproc)
 make altinstall
+cd ..
 rm -r Python-3.14.3
+rm Python-3.14.3.tar.xz
 ```
 
-Make symlink to PATH-dir
+Make symlink to PATH dir
 
 ```bash
-ln -s /opt/python/3.14.4/bin/python-3.14 /usr/local/bin/python
+ln -s /opt/python/3.14.3/bin/python3.14 /usr/local/bin/python
 ```
 
 Upgrade pip
 
 ```bash
-python -m pip instal -U pip
+python -m pip install --upgrade pip
 ```
 
+### Run project
+
+Login as a regular user. Create `code` direcotory
+
+```bash
+mkdir $HOME/code
+```
+
+Download the project
+
+```bash
+wget https://github.com/BudjakovDmitry/simple-blog/archive/refs/heads/main.zip
+```
+
+Unzip project to `code`
+
+```bash
+unzip main.zip -d $HOME/code
+mv $HOME/code/simple-blog-engine-main/ $HOME/code/blog
+rm main.zip
+cd $HOME/code/blog
+```
+
+Create and activate virtual environment
+
+```bash
+python -m venv env
+sourve env/bin/activate
+```
+
+Install project requirements
+
+```bash
+pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
