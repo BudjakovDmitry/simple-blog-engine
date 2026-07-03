@@ -23,6 +23,11 @@ migratelocal:
 migrate:
 	PGSERVICEFILE=$(CURDIR)/secrets/pg_service.conf DJANGO_SETTINGS_MODULE=dmitbud.settings.production python manage.py migrate
 
+# Collect static files for production
+.PHONY: collectstatic
+collectstatic:
+	DJANGO_SETTINGS_MODULE=dmitbud.settings.production python manage.py collectstatic --noinput
+
 # Upload article as draft
 .PHONY: upload
 upload:

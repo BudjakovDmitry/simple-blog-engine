@@ -13,3 +13,5 @@ if not SECRET_KEY:
 
 DEBUG = False
 ALLOWED_HOSTS = ['.dmitbud.tech']
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # noqa: F405
