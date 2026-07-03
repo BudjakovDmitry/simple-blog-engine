@@ -63,7 +63,7 @@ Connect to the Angie repository
 
 ```bash
 echo "deb https://download.angie.software/angie/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
-     | sudo tee /etc/apt/sources.list.d/angie.list > /dev/null
+     | tee /etc/apt/sources.list.d/angie.list > /dev/null
 ```
 
 Update repository index
