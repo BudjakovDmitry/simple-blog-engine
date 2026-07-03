@@ -19,7 +19,7 @@ apt update && apt upgrade
 Install utils:
 
 ```bash
-apt install postgresql wget unzip tree vim
+apt install postgresql wget curl unzip tree vim ca-certificates
 ```
 
 Install building tools:
@@ -49,6 +49,33 @@ apt install \
     tk-dev \
     libzstd-dev \
     inetutils-inetd
+```
+
+### Install Angie web-server
+
+Download Angie repository open key
+
+```bash
+curl -o /etc/apt/trusted.gpg.d/angie-signing.gpg https://angie.software/keys/angie-signing.gpg
+```
+
+Connect to the Angie repository
+
+```bash
+echo "deb https://download.angie.software/angie/$(. /etc/os-release && echo "$ID/$VERSION_ID $VERSION_CODENAME") main" \
+     | sudo tee /etc/apt/sources.list.d/angie.list > /dev/null
+```
+
+Update repository index
+
+```bash
+apt update
+```
+
+Install Angie
+
+```bash
+apt install angie
 ```
 
 ### Build Python from source
