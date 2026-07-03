@@ -1,19 +1,22 @@
-PYTHON ?= .venv/bin/python
+# Run local development server
+.PHONY: rundev
+runlocal:
+	PGSERVICEFILE=$(CURDIR)/secrets/pg_service.conf python manage.py runserver 127.0.0.1:8000
 
-# Run development server
+# Run server
 .PHONY: run
 run:
-	$(PYTHON) manage.py runserver
+	PGSERVICEFILE=$(CURDIR)/secrets/pg_service.conf python manage.py runserver 127.0.0.1:8000
 
 # Make migrations
 .PHONY: migrations
 migrations:
-	$(PYTHON) manage.py makemigrations
+	python manage.py makemigrations
 
 # Apply migrations
 .PHONY: migrate
 migrate:
-	$(PYTHON) manage.py migrate
+	python manage.py migrate
 
 # Upload article as draft
 .PHONY: upload
@@ -21,5 +24,5 @@ upload:
 ifndef ARTICLE
 	$(error Usage: make upload ARTICLE=/path/to/article.md)
 endif
-	$(PYTHON) manage.py upload $(ARTICLE)
+	python manage.py upload $(ARTICLE)
 

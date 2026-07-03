@@ -157,3 +157,11 @@ Install project requirements
 pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
+
+Update secrets:
+
+```bash
+cp secrets/pgpass.example secrets/pgpass
+```
+
+Set your own credentials to `secrets/pg_service.conf` and `pgpass`.
