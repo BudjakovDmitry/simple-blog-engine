@@ -14,7 +14,7 @@ if not SECRET_KEY:
 DEBUG = False
 ALLOWED_HOSTS = ['.dmitbud.tech']
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # noqa: F405
+STATIC_ROOT = "/var/www/app/static"
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True

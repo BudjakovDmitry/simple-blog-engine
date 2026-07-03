@@ -189,3 +189,24 @@ chmod 600 secrets/pgpass
 ```
 
 Set your own credentials to `secrets/pg_service.conf` and `pgpass`.
+
+For production.
+
+Make shared static directory
+
+```bash
+sudo mkdir -p /var/www/blog/static
+sudo find /var/www/blog/static -type d -exec chmod 750 {} \;
+sudo find /var/www/blog/static -type f -exec chmod 640 {} \;
+```
+
+```bash
+make collectstatic
+sudo install -m 0644 deploy/angie/dmitbud.conf /etc/angie/http.d/dmitbud.conf
+sudo mv /etc/angie/http.d/default.conf /etc/angie/http.d/default.conf.factory
+sudo angie -t
+# or
+sudo /usr/sbin/angie -t
+sudo systemctl reload angie
+```
+
