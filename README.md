@@ -115,7 +115,7 @@ CREATE ROLE dmitbud WITH LOGIN PASSWORD 'MyStrongPassword';
 Create database:
 
 ```sql
-CREATE DATABASE knowladge_base
+CREATE DATABASE knowledge_base
 WITH
 ENCODING='UTF8'
 owner dmitbud;
@@ -233,11 +233,8 @@ Set your own credentials to `pg_service.conf` and `.pgpass`.
 ```bash
 make collectstatic
 sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.factory
-# sudo install -m 0644 deploy/angie/dmitbud.conf /etc/angie/http.d/dmitbud.conf
-# sudo mv /etc/angie/http.d/default.conf /etc/angie/http.d/default.conf.factory
-# sudo angie -t
-# or
-# sudo /usr/sbin/angie -t
-# udo systemctl reload angie
+sudo cp ./deploy/nginx/dmitbud.conf /etc/nginx/conf.d/
+sudo nginx -t
+sudo nginx -s reload
 ```
 

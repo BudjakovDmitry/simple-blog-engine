@@ -16,6 +16,8 @@ ALLOWED_HOSTS = ['.dmitbud.tech']
 
 STATIC_ROOT = "/var/dmitbud/static"
 
+DATABASES['default']['OPTIONS']['passfile'] = '/etc/dmitbud/postgres/.pgpass'
+
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
