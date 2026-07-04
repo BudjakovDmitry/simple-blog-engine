@@ -6,7 +6,7 @@ runlocal:
 # Run server
 .PHONY: run
 run:
-	PGSERVICEFILE=$(CURDIR)/secrets/pg_service.conf DJANGO_SETTINGS_MODULE=dmitbud.settings.production gunicorn dmitbud.wsgi --workers 5 --bind 127.0.0.1:8000
+	PGSERVICEFILE=/etc/dmitbud/postgres/pg_service.conf DJANGO_SETTINGS_MODULE=dmitbud.settings.production gunicorn dmitbud.wsgi --workers 5 --bind 127.0.0.1:8000
 
 # Make migrations
 .PHONY: migrations

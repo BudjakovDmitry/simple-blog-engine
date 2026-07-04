@@ -55,7 +55,7 @@ apt install \
     inetutils-inetd
 ```
 
-### Install Nginx
+### Install Nginx (for production only)
 
 Import an official nginx signing key
 
@@ -79,10 +79,16 @@ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 
     | sudo tee /etc/apt/preferences.d/99nginx
 ```
 
-Install Nginx
+Install Nginx:
 
 ```bash
 apt update && apt install nginx
+```
+
+Run Nginx:
+
+```bash
+systemctl start nginx
 ```
 
 ### Install and prepare PostgreSQL
@@ -193,38 +199,45 @@ pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Set your own credentials to `secrets/pg_service.conf` and `pgpass`.
-
 ### For production
 
 Login as a regular user.
 
-Make shared static directories
+Creaate environment variable DMITBUD_SECRET_KEY (don't forget to set your secret key):
+
+```bash
+export DMITBUD_SECRET_KEY=YourSecretKey
+```
+
+Create shared directories:
 
 ```bash
 # static files
 sudo mkdir -p /var/dmitbud/static
+sudo chown -R $USER: /var/dmitbud
 # secrets
 sudo mkdir -p /etc/dmitbud/postgres
-# sudo chown -R www:angie /var/www/blog
-# sudo find /var/www/blog/static -type d -exec chmod 750 {} \;
-# sudo find /var/www/blog/static -type f -exec chmod 640 {} \;
+sudo chown -R $USER: /etc/dmitbud
 ```
 
 Update secrets:
 
 ```bash
-mv secrets/pgpass.example /etc/blog/postgres/pgpass
-chmod 600 /etc/blog/postgres/pgpass
+cp secrets/pgpass.example /etc/dmitbud/postgres/.pgpass
+chmod 600 /etc/dmitbud/postgres/.pgpass
+cp secrets/pg_service.conf /etc/dmitbud/postgres/
 ```
+
+Set your own credentials to `pg_service.conf` and `.pgpass`.
 
 ```bash
 make collectstatic
-sudo install -m 0644 deploy/angie/dmitbud.conf /etc/angie/http.d/dmitbud.conf
-sudo mv /etc/angie/http.d/default.conf /etc/angie/http.d/default.conf.factory
-sudo angie -t
+sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.factory
+# sudo install -m 0644 deploy/angie/dmitbud.conf /etc/angie/http.d/dmitbud.conf
+# sudo mv /etc/angie/http.d/default.conf /etc/angie/http.d/default.conf.factory
+# sudo angie -t
 # or
-sudo /usr/sbin/angie -t
-udo systemctl reload angie
+# sudo /usr/sbin/angie -t
+# udo systemctl reload angie
 ```
 
