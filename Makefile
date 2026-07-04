@@ -28,10 +28,23 @@ migrate:
 collectstatic:
 	DJANGO_SETTINGS_MODULE=dmitbud.settings.production python manage.py collectstatic --noinput
 
+# Create superuser in production
+.PHONY: superuser
+superuser:
+	PGSERVICEFILE=/etc/dmitbud/postgres/pg_service.conf DJANGO_SETTINGS_MODULE=dmitbud.settings.production python manage.py createsuperuser
+
+# Upload article as draft locally
+.PHONY: uploadlocal
+uploadlocal:
+ifndef ARTICLE
+	$(error Usage: make upload ARTICLE=/path/to/article.md)
+endif
+	python manage.py upload $(ARTICLE)
+
 # Upload article as draft
 .PHONY: upload
 upload:
 ifndef ARTICLE
 	$(error Usage: make upload ARTICLE=/path/to/article.md)
 endif
-	python manage.py upload $(ARTICLE)
+	PGSERVICEFILE=/etc/dmitbud/postgres/pg_service.conf DJANGO_SETTINGS_MODULE=dmitbud.settings.production make upload $(ARTICLE)

@@ -5,8 +5,6 @@ from . import views
 
 urlpatterns = [
     path("", views.feed, name="feed"),
-    path("linux", views.linux, name="linux"),
-    path("html", views.html, name="html"),
-    path("page/<int:page>/", views.page, name="page"),
+    path("frontend", views.frontend, name="frontend"),
     path("articles/<str:slug>/", views.read, name="read"),
 ]

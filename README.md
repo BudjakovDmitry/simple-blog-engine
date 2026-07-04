@@ -238,3 +238,7 @@ sudo nginx -t
 sudo nginx -s reload
 ```
 
+### Get Let's Encrypt sertificate
+
+Visit https://certbot.eff.org/ and get certbot instructions.
+

@@ -28,24 +28,12 @@ def feed(request):
     return render_feed(request, article_list)
 
 
-def linux(request):
-    get_published_only = not is_user_superuser(request)
-    article_list = get_last_articles(
-        get_published_only, stream="linux",
-    )
-    return render_feed(request, article_list)
-
-
-def html(request):
+def frontend(request):
     get_published_only = not is_user_superuser(request)
     article_list =  get_last_articles(
-        get_published_only, stream="html",
+        get_published_only, stream="frontend",
     )
     return render_feed(request, article_list)
-
-
-def page(request, page):
-    return HttpResponse(f"You're on the page {page}")
 
 
 def read(request, slug):
