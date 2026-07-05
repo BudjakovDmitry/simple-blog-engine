@@ -1,15 +1,23 @@
 """Settings for production."""
 
-import os
+from pathlib import Path
 
 from django.core.exceptions import ImproperlyConfigured
 
 from .base import *  # noqa: F403
 
 
-SECRET_KEY = os.getenv('DMITBUD_SECRET_KEY')
+SECRET_KEY_FILE = Path('/etc/dmitbud/secret_key')
+
+try:
+    SECRET_KEY = SECRET_KEY_FILE.read_text(encoding='utf-8').strip()
+except OSError:
+    raise ImproperlyConfigured(
+        f'Unable to read Django secret key from {SECRET_KEY_FILE}'
+    )
+
 if not SECRET_KEY:
-    raise ImproperlyConfigured('Environment variable DMITBUD_SECRET_KEY is not set')
+    raise ImproperlyConfigured(f'Django secret key file {SECRET_KEY_FILE} is empty')
 
 DEBUG = False
 ALLOWED_HOSTS = ['.dmitbud.tech']

@@ -203,12 +203,6 @@ python -m pip install -r requirements.txt
 
 Login as a regular user.
 
-Creaate environment variable DMITBUD_SECRET_KEY (don't forget to set your secret key):
-
-```bash
-export DMITBUD_SECRET_KEY=YourSecretKey
-```
-
 Create shared directories:
 
 ```bash
@@ -223,12 +217,15 @@ sudo chown -R $USER: /etc/dmitbud
 Update secrets:
 
 ```bash
+cp secrets/secret_key.example /etc/dmitbud/secret_key
+chmod 600 /etc/dmitbud/secret_key
 cp secrets/pgpass.example /etc/dmitbud/postgres/.pgpass
 chmod 600 /etc/dmitbud/postgres/.pgpass
 cp secrets/pg_service.conf /etc/dmitbud/postgres/
 ```
 
-Set your own credentials to `pg_service.conf` and `.pgpass`.
+Replace the value in `/etc/dmitbud/secret_key` with a strong, unique secret key.
+Set your own credentials in `pg_service.conf` and `.pgpass`.
 
 ```bash
 make collectstatic
@@ -241,4 +238,3 @@ sudo nginx -s reload
 ### Get Let's Encrypt sertificate
 
 Visit https://certbot.eff.org/ and get certbot instructions.
-
