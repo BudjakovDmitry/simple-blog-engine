@@ -30,8 +30,15 @@ def feed(request):
 
 def frontend(request):
     get_published_only = not is_user_superuser(request)
-    article_list =  get_last_articles(
+    article_list = get_last_articles(
         get_published_only, stream="frontend",
+    )
+    return render_feed(request, article_list)
+
+def python(request):
+    get_published_only = not is_user_superuser(request)
+    article_list = get_last_articles(
+        get_published_only, stream="python",
     )
     return render_feed(request, article_list)
 
