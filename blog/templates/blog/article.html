@@ -13,9 +13,6 @@
       <nav class="site-navigation">
         <a href="/" class="brand">dmitbud.tech</a>
         <ul class="navigation-list">
-          <li class="navigation-list-item">
-            <a href="/" class="nav-link" title="Home">Главная</a>
-          </li>
           {% for stream in stream_list %}
             <li class="navigation-list-item">
               <a href="/{{ stream.route }}" class="nav-link" title="{{ stream.name }}">{{ stream.name }}</a>
@@ -25,7 +22,7 @@
       </nav>
     </div>
   </header>
-  <main class="main-article reading-area">
+  <main class="main-inner reading-area">
     <article class="article">
       <header class="article-header">
         <h1 class="article-title">{{ article.title }}</h1>
@@ -33,11 +30,13 @@
     {{ article.formatted_text|safe }}
     </article>
   </main>
+  <!--
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 dmitbud</p>
       <p>Связаться со мной: <a href="mailto:me@dmitbud.tech">me@dmitbud.tech</a></p>
     </div>
   </footer>
+  -->
 </body>
 </html>

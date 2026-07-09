@@ -1,7 +1,9 @@
 :root {
     --page-bg: #f7f5f1;
     --surface-bg: #fffefa;
+    --code-bg: #272822;
     --text-color: #24221f;
+    --code-color: #f6f6f6;
     --text-muted-color: #68635c;
     --accent-color: #19355f;
     --accent-color-hover: #0f2748;
@@ -77,6 +79,7 @@ a:hover {
 
 .main-inner {
     padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .reading-area {
@@ -168,9 +171,9 @@ p.definition {
 }
 
 pre.codehilite {
-    border: 1px solid #e7e7e7;
     padding: 20px;
     border-radius: 7px;
-    background-color: #f6f6f6;
+    background-color: var(--code-bg);
+    color: var(--code-color);
 }
 
