@@ -3,9 +3,9 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
 from .controller import (
-    get_article_by_slug,
     get_last_articles,
     get_streams,
+    read_article,
 )
 from .models import Article
 
@@ -45,13 +45,9 @@ def python(request):
 
 def read(request, slug):
     try:
-        article = get_article_by_slug(slug)
-    except Article.DoesNotExist as error:
-        raise Http404("Article not found") from error
-
-    if not is_user_superuser(request):
-        if not article.is_published():
-            raise PermissionDenied
+        article = read_article(slug, request.user)
+    except Article.DoesNotExist:
+        raise Http404("Article not found")
 
     context = {
         "article": article,
